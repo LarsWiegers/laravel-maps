@@ -3,6 +3,7 @@
 namespace Larswiegers\LaravelMaps;
 
 use Illuminate\Support\ServiceProvider;
+use Larswiegers\LaravelMaps\Components\Leaflet;
 
 class LaravelMapsServiceProvider extends ServiceProvider
 {
@@ -42,6 +43,12 @@ class LaravelMapsServiceProvider extends ServiceProvider
             // Registering package commands.
             // $this->commands([]);
         }
+
+        $this->loadViewComponentsAs('maps', [
+            Leaflet::class,
+        ]);
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'maps.tests');
     }
 
     /**

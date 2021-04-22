@@ -31,7 +31,10 @@
     "autoload-dev": {
         "psr-4": {
             "Larswiegers\\LaravelMaps\\Tests\\": "tests"
-        }
+        },
+        "classmap": [
+            "tests"
+        ]
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
