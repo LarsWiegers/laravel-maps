@@ -4,9 +4,25 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Larswiegers\LaravelMaps\LaravelMapsServiceProvider;
 
-abstract class TestCase extends BaseTestCase
+class TestCase extends \Orchestra\Testbench\TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        // additional setup
+    }
 
+    protected function getPackageProviders($app)
+    {
+        return [
+            LaravelMapsServiceProvider::class,
+        ];
+    }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        // perform environment setup
+    }
 }
