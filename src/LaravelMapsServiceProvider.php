@@ -48,7 +48,7 @@ class LaravelMapsServiceProvider extends ServiceProvider
             Leaflet::class,
         ]);
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'maps.tests');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'maps');
     }
 
     /**
