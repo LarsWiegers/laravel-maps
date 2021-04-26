@@ -4,5 +4,8 @@
  * You can place your custom package configuration in here.
  */
 return [
-    'paths' => resource_path('views')
+    'paths' => resource_path('views'),
+    'mapbox' => [
+        'access_token' => env('MAPS_MAPBOX_ACCESS_TOKEN', null),
+    ]
 ];

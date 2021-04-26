@@ -49,6 +49,7 @@ class LaravelMapsServiceProvider extends ServiceProvider
         ]);
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'maps');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'maps');
     }
 
     /**
