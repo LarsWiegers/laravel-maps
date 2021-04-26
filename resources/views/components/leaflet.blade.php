@@ -16,9 +16,9 @@
         crossorigin=""></script>
 <script>
 
-    var mymap = L.map('mapid').setView([{{implode(",", $centerPoint)}}], {{$zoomLevel}});
+    var mymap = L.map('mapid').setView([{{$centerPoint['lat'] ?? $centerPoint[0]}}, {{$centerPoint['long'] ?? $centerPoint[1]}}], {{$zoomLevel}});
     @foreach($markers as $marker)
-        var marker = L.marker([{{implode(",", $marker)}}]).addTo(mymap);
+        var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}}]).addTo(mymap);
     @endforeach
 
     @if($tileHost === 'mapbox')

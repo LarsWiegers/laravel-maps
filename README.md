@@ -17,14 +17,10 @@ composer require larswiegers/laravel-maps
 ```
 
 ## Supported map types
-### Leaflet
-    ✔ Basic map
-    ✔ Centerpoint
-    ✔ Basic markers
-    ✔ Zoomlevel
-    Tilehosts:
-        - Openstreemap
-        - Mapbox
+| What          | Basic map     | Centerpoint  | Basic markers  | Zoomlevel  | Can use different tiles  |
+| ------------- |:-------------:|:------------:|:--------------:|:----------:|:------------------------:|
+| Leaflet       | ✅            | ✅            | ✅             | ✅         | ✅                        |  
+| Google maps   | ✅            | ✅            | ✅             | ✅         | ✅                        |  
 
 #### Tilehosts
 ##### Openstreetmap
@@ -36,10 +32,11 @@ More information can be found here: [openstreetmap.org](https://www.openstreetma
 Mapbox is a for profit company that also offers free keys. 
 Their map can be more accurate / precise. 
 To get your free key go to [mapbox.com](https://account.mapbox.com/auth/signup/)
-Once logged in you can get your free key and use it by placing it in the env file like this ``MAPS_MAPBOX_ACCESS_TOKEN`` or straight into 
+Once logged in you can get your free key and use it by placing it in the env file like this ``MAPS_MAPBOX_ACCESS_TOKEN``. 
 ## Usage
-
+### Leaflet
 ```blade
+// Leaflet
 // A basic map is as easy as using the x blade component.
 
 <x-maps-leaflet></x-maps-leaflet>
@@ -52,9 +49,25 @@ Once logged in you can get your free key and use it by placing it in the env fil
 
 // Set markers on the map:
 <x-maps-leaflet :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-leaflet>
-
 ```
+### Google maps
+``` blade
+// Google maps
 
+// set the centerpoint of the map:
+<x-maps-google-maps :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-google-maps>
+
+// set a zoomlevel:
+<x-maps-google-maps :zoomLevel="6"></x-maps-google-maps>
+
+// Set markers on the map:
+<x-maps-google-maps :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-google-maps>
+```
+#### Google maps api key
+You can get an api key here:
+![console.cloud.google.com](https://console.cloud.google.com/project/_/apiui/credential)
+Create an api key and enable the Maps Javascript API in the console aswell. 
+Place the api key in the env file like this ``MAPS_GOOGLE_MAPS_ACCESS_TOKEN``
 ### Testing
 To run the tests just use the following component:
 ```bash
