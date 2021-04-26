@@ -5,7 +5,7 @@ namespace Larswiegers\LaravelMaps\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class GoogleMaps extends Component
+class Google extends Component
 {
 
     public int $zoomLevel;

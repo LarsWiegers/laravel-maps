@@ -3,7 +3,7 @@
 namespace Larswiegers\LaravelMaps;
 
 use Illuminate\Support\ServiceProvider;
-use Larswiegers\LaravelMaps\Components\GoogleMaps;
+use Larswiegers\LaravelMaps\Components\Google;
 use Larswiegers\LaravelMaps\Components\Leaflet;
 
 class LaravelMapsServiceProvider extends ServiceProvider
@@ -47,7 +47,7 @@ class LaravelMapsServiceProvider extends ServiceProvider
 
         $this->loadViewComponentsAs('maps', [
             Leaflet::class,
-            GoogleMaps::class,
+            Google::class,
         ]);
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'maps');
