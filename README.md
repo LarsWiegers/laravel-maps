@@ -55,13 +55,13 @@ Once logged in you can get your free key and use it by placing it in the env fil
 // Google maps
 
 // set the centerpoint of the map:
-<x-maps-google-maps :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-google-maps>
+<x-maps-google :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-google>
 
 // set a zoomlevel:
-<x-maps-google-maps :zoomLevel="6"></x-maps-google-maps>
+<x-maps-google :zoomLevel="6"></x-maps-google>
 
 // Set markers on the map:
-<x-maps-google-maps :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-google-maps>
+<x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-google>
 ```
 #### Google maps api key
 You can get an api key here:
