@@ -27,7 +27,7 @@ composer require larswiegers/laravel-maps
 // set a zoomlevel:
 <x-maps-leaflet :zoomLevel="6"></x-maps-leaflet>
 
-// markers
+// Set markers on the map:
 <x-maps-leaflet :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-leaflet>
 
 ```
