@@ -16,12 +16,15 @@ class Leaflet extends Component
 
     public array $markers;
 
-    public function __construct($centerPoint = [0,0], $markers = [], $zoomLevel = 13, $maxZoomLevel = 18)
+    public $tileHost;
+
+    public function __construct($centerPoint = [0,0], $markers = [], $zoomLevel = 13, $maxZoomLevel = 18, $tileHost = 'openstreetmap')
     {
         $this->centerPoint = $centerPoint;
         $this->zoomLevel = $zoomLevel;
         $this->maxZoomLevel = $maxZoomLevel;
         $this->markers = $markers;
+        $this->tileHost = $tileHost;
     }
 
     public function render() : View
@@ -37,7 +40,8 @@ class Leaflet extends Component
             'zoomLevel' => $this->zoomLevel,
             'maxZoomLevel' => $this->maxZoomLevel,
             'markers' => $this->markers,
-            'markerArray' => $markerArray
+            'markerArray' => $markerArray,
+            'tileHost' => $this->tileHost
         ]);
     }
 }
