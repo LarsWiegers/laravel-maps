@@ -16,12 +16,24 @@ composer require larswiegers/laravel-maps
 
 ## Usage
 
-```php
-// Usage description here
+```blade
+// A basic map is as easy as using the x blade component.
+
+<x-maps-leaflet></x-maps-leaflet>
+
+// set the centerpoint of the map:
+<x-maps-leaflet :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-leaflet>
+
+// set a zoomlevel:
+<x-maps-leaflet :zoomLevel="6"></x-maps-leaflet>
+
+// markers
+<x-maps-leaflet :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-leaflet>
+
 ```
 
 ### Testing
-
+To run the tests just use the following component:
 ```bash
 composer test
 ```
