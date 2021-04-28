@@ -35,7 +35,7 @@ class Google extends Component
             $markerArray[] = [implode(",", $marker)];
         }
 
-        return view('maps::components.google-maps', [
+        return view('maps::components.google', [
             'centerPoint' => $this->centerPoint,
             'zoomLevel' => $this->zoomLevel,
             'maxZoomLevel' => $this->maxZoomLevel,
