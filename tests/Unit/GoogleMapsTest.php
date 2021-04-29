@@ -13,7 +13,7 @@ final class GoogleMapsTest extends TestCase
 
     public function test_it_can_render_the_basic_maps_component()
     {
-        $content = $this->getComponentRenderedContent('<x-maps-google />');
+        $content = $this->getComponentRenderedContent('<x-maps-google id="map" />');
         $this->assertStringContainsString('<div id="map"></div>', $content);
     }
 

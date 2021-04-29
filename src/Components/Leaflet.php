@@ -9,6 +9,8 @@ use Illuminate\View\View;
 class Leaflet extends Component
 {
 
+    const DEFAULTMAPID = "defaultMapId";
+
     public int $zoomLevel;
 
     public int $maxZoomLevel;
@@ -19,13 +21,16 @@ class Leaflet extends Component
 
     public $tileHost;
 
-    public function __construct($centerPoint = [0,0], $markers = [], $zoomLevel = 13, $maxZoomLevel = 18, $tileHost = 'openstreetmap')
+    public $mapId;
+
+    public function __construct($centerPoint = [0,0], $markers = [], $zoomLevel = 13, $maxZoomLevel = 18, $tileHost = 'openstreetmap', $id = self::DEFAULTMAPID )
     {
         $this->centerPoint = $centerPoint;
         $this->zoomLevel = $zoomLevel;
         $this->maxZoomLevel = $maxZoomLevel;
         $this->markers = $markers;
         $this->tileHost = $tileHost;
+        $this->mapId = $id;
     }
 
     public function render() : View
@@ -43,7 +48,7 @@ class Leaflet extends Component
             'markers' => $this->markers,
             'markerArray' => $markerArray,
             'tileHost' => $this->tileHost,
-            'mapId' => Str::random()
+            'mapId' => $this->mapId === self::DEFAULTMAPID ? Str::random() : $this->mapId
         ]);
     }
 }

@@ -13,8 +13,8 @@ final class LeafletTest extends TestCase
 
     public function test_it_can_render_the_basic_leaflet_component()
     {
-        $content = $this->getComponentRenderedContent('<x-maps-leaflet></x-maps-leaflet>');
-        $this->assertStringContainsString('<div id="mapid"></div>', $content);
+        $content = $this->getComponentRenderedContent('<x-maps-leaflet id="mapId"></x-maps-leaflet>');
+        $this->assertStringContainsString('<div id="mapId"></div>', $content);
     }
 
     public function test_it_can_render_with_a_centre_point()
