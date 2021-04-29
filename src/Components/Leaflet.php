@@ -2,6 +2,7 @@
 
 namespace Larswiegers\LaravelMaps\Components;
 
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -41,7 +42,8 @@ class Leaflet extends Component
             'maxZoomLevel' => $this->maxZoomLevel,
             'markers' => $this->markers,
             'markerArray' => $markerArray,
-            'tileHost' => $this->tileHost
+            'tileHost' => $this->tileHost,
+            'mapId' => Str::random()
         ]);
     }
 }

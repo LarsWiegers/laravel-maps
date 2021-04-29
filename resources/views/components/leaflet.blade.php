@@ -3,12 +3,12 @@
       crossorigin=""/>
 
 <style>
-    #mapid {
+    #{{$mapId}} {
         height: 100vh;
     }
 </style>
 
-<div id="mapid"></div>
+<div id="{{$mapId}}"></div>
 
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -16,15 +16,18 @@
         crossorigin=""></script>
 <script>
 
-    var mymap = L.map('mapid').setView([{{$centerPoint['lat'] ?? $centerPoint[0]}}, {{$centerPoint['long'] ?? $centerPoint[1]}}], {{$zoomLevel}});
+    var mymap = L.map('{{$mapId}}').setView([{{$centerPoint['lat'] ?? $centerPoint[0]}}, {{$centerPoint['long'] ?? $centerPoint[1]}}], {{$zoomLevel}});
     @foreach($markers as $marker)
         var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}}]).addTo(mymap);
     @endforeach
 
+    if (typeof url !== 'undefined') {
+        let url = "";
+    }
     @if($tileHost === 'mapbox')
-        let url = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={{config('maps.mapbox.access_token', null)}}';
+        url = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={{config('maps.mapbox.access_token', null)}}';
     @elseif($tileHost === 'openstreetmap')
-        let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     @endif
     L.tileLayer(url, {
         maxZoom: {{$maxZoomLevel}},

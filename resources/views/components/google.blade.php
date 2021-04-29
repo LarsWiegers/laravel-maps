@@ -1,5 +1,5 @@
 <style>
-    #map {
+    #{{$mapId}} {
         height: 100%;
     }
 
@@ -13,17 +13,19 @@
 
 </style>
 
-<div id="map"></div>
+<div id="{{$mapId}}"></div>
 
 <script
         src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap&libraries=&v=weekly"
         async
 ></script>
 <script>
-    let map;
+    if (typeof map !== 'undefined') {
+        let map = "";
+    }
 
     function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
+        map = new google.maps.Map(document.getElementById("{{$mapId}}"), {
             center: { lat: {{$centerPoint['lat'] ?? $centerPoint[0]}}, lng: {{$centerPoint['long'] ?? $centerPoint[1]}} },
             zoom: {{$zoomLevel}},
         });
