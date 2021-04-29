@@ -14,18 +14,16 @@
 </style>
 
 <div id="{{$mapId}}"></div>
-
 <script
-        src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap&libraries=&v=weekly"
+        src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap{{$mapId}}&libraries=&v=3"
         async
 ></script>
-<script>
-    if (typeof map !== 'undefined') {
-        let map = "";
-    }
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("{{$mapId}}"), {
+<script>
+    let map{{$mapId}} = "";
+
+    function initMap{{$mapId}}() {
+        map{{$mapId}} = new google.maps.Map(document.getElementById("{{$mapId}}"), {
             center: { lat: {{$centerPoint['lat'] ?? $centerPoint[0]}}, lng: {{$centerPoint['long'] ?? $centerPoint[1]}} },
             zoom: {{$zoomLevel}},
         });
@@ -36,7 +34,7 @@
                     lat: {{$marker['lat'] ?? $marker[0]}},
                     lng: {{$marker['long'] ?? $marker[1]}}
                 },
-                map,
+                map{{$mapId}},
                 title: "Hello World!",
             });
         @endforeach

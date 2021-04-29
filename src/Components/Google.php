@@ -11,6 +11,8 @@ class Google extends Component
 
     const DEFAULTMAPID = "defaultMapId";
 
+    static $mapHasBeenLoadedBefore = false;
+
     public int $zoomLevel;
 
     public int $maxZoomLevel;
@@ -30,7 +32,7 @@ class Google extends Component
         $this->maxZoomLevel = $maxZoomLevel;
         $this->markers = $markers;
         $this->tileHost = $tileHost;
-        $this->mapId = $id;
+        $this->mapId = $this->mapId = $id === self::DEFAULTMAPID ? Str::random() : $id;
     }
 
     public function render() : View
@@ -41,6 +43,10 @@ class Google extends Component
             $markerArray[] = [implode(",", $marker)];
         }
 
+        $shouldIncludeMapJS = !self::$mapHasBeenLoadedBefore;
+        self::$mapHasBeenLoadedBefore = true;
+
+
         return view('maps::components.google', [
             'centerPoint' => $this->centerPoint,
             'zoomLevel' => $this->zoomLevel,
@@ -48,7 +54,8 @@ class Google extends Component
             'markers' => $this->markers,
             'markerArray' => $markerArray,
             'tileHost' => $this->tileHost,
-            'mapId' => $this->mapId === self::DEFAULTMAPID ? Str::random() : $this->mapId
+            'mapId' => $this->mapId,
+            'mapHasBeenLoadedBefore' => $shouldIncludeMapJS,
         ]);
     }
 }
