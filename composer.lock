@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "becf999417c57da940e33e83aeddb894",
+    "content-hash": "d207af2aada2cd2905df0278f3282cea",
     "packages": [
         {
             "name": "brick/math",
@@ -347,6 +347,51 @@
             "time": "2020-12-29T14:50:06+00:00"
         },
         {
+            "name": "gajus/dindent",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gajus/dindent.git",
+                "reference": "d81c3a6f78fbe1ab26f5e753098bbbef6b6a9f3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gajus/dindent/zipball/d81c3a6f78fbe1ab26f5e753098bbbef6b6a9f3c",
+                "reference": "d81c3a6f78fbe1ab26f5e753098bbbef6b6a9f3c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gajus\\Dindent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Gajus Kuizinas",
+                    "email": "gk@anuary.com"
+                }
+            ],
+            "description": "HTML indentation library for development and testing.",
+            "homepage": "https://github.com/gajus/dindent",
+            "keywords": [
+                "format",
+                "html",
+                "indent"
+            ],
+            "time": "2014-10-08T10:03:04+00:00"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.0.1",
             "source": {
@@ -410,16 +455,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.38.0",
+            "version": "v8.40.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "26a73532c54d2c090692bf2e3e64e449669053ba"
+                "reference": "a654897ad7f97aea9d7ef292803939798c4a02a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/26a73532c54d2c090692bf2e3e64e449669053ba",
-                "reference": "26a73532c54d2c090692bf2e3e64e449669053ba",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a654897ad7f97aea9d7ef292803939798c4a02a4",
+                "reference": "a654897ad7f97aea9d7ef292803939798c4a02a4",
                 "shasum": ""
             },
             "require": {
@@ -570,7 +615,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2021-04-20T13:50:21+00:00"
+            "time": "2021-04-28T14:38:56+00:00"
         },
         {
             "name": "league/commonmark",

@@ -3,12 +3,12 @@
       crossorigin=""/>
 
 <style>
-    #mapid {
+    #{{$mapId}} {
         height: 100vh;
     }
 </style>
 
-<div id="mapid"></div>
+<div id="{{$mapId}}"></div>
 
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -16,7 +16,7 @@
         crossorigin=""></script>
 <script>
 
-    var mymap = L.map('mapid').setView([{{implode(",", $centerPoint)}}], {{$zoomLevel}});
+    var mymap = L.map('mapid').setView([{{implode(", ", $centerPoint)}}], {{$zoomLevel}});
     @foreach($markers as $marker)
         var marker = L.marker([{{implode(",", $marker)}}]).addTo(mymap);
     @endforeach
