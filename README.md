@@ -4,7 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/larswiegers/laravel-maps.svg?style=flat-square)](https://packagist.org/packages/larswiegers/laravel-maps)
 ![GitHub Actions](https://github.com/larswiegers/laravel-maps/actions/workflows/main.yml/badge.svg)
 
-![Laravel maps](https://banners.beyondco.de/Laravel%20Maps.png?theme=light&packageManager=composer+require&packageName=larswiegers%2Flaravel-map&pattern=architect&style=style_1&description=The+easiest+way+to+use+maps+in+your+laravel+app.+&md=1&showWatermark=0&fontSize=100px&images=map&widths=500&heights=500)
+![Laravel maps](https://banners.beyondco.de/Laravel%20Maps.png?theme=light&packageManager=composer+require&packageName=larswiegers%2Flaravel-maps&pattern=architect&style=style_1&description=The+easiest+way+to+use+maps+in+your+laravel+app.+&md=1&showWatermark=0&fontSize=100px&images=map&widths=500&heights=500)
 
 This package allows you to easily use leaflet.js or google maps to create a map in your laravel project.
 
