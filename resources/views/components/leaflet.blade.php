@@ -16,7 +16,7 @@
         crossorigin=""></script>
 <script>
 
-    var mymap = L.map('mapid').setView([{{implode(", ", $centerPoint)}}], {{$zoomLevel}});
+    var mymap = L.map('{{$mapId}}').setView([{{implode(", ", $centerPoint)}}], {{$zoomLevel}});
     @foreach($markers as $marker)
         var marker = L.marker([{{implode(",", $marker)}}]).addTo(mymap);
     @endforeach
