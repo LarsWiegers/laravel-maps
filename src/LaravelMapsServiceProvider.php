@@ -66,5 +66,7 @@ class LaravelMapsServiceProvider extends ServiceProvider
         $this->app->singleton('laravel-maps', function () {
             return new LaravelMaps;
         });
+
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
     }
 }
