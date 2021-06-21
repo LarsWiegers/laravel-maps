@@ -2,18 +2,21 @@
     #{{$mapId}} {
         height: 100%;
     }
-
-    /* Optional: Makes the sample page fill the window. */
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
+</style>
+<style>
+    #{{$mapId}} {
+    @if(! isset($attributes['style']))
+        height: 100vh;
+    @else
+        {{ $attributes['style'] }}
+    @endif
     }
-
 </style>
 
-<div id="{{$mapId}}"></div>
+<div id="{{$mapId}}" @if(isset($attributes['class']))
+class='{{ $attributes["class"] }}'
+        @endif
+></div>
 <script
         src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap{{$mapId}}&libraries=&v=3"
         async

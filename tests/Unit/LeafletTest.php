@@ -28,4 +28,22 @@ final class LeafletTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-leaflet :zoomLevel=\"6\"></x-maps-leaflet>");
         $this->assertStringContainsString('setView([0, 0], 6);', $content);
     }
+
+    public function test_it_has_default_styles()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet></x-maps-leaflet>");
+        $this->assertStringContainsString('height: 100vh', $content);
+    }
+
+    public function test_it_has_can_take_styles_as_attribute()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet style='height: 50vh'></x-maps-leaflet>");
+        $this->assertStringContainsString('height: 50vh', $content);
+    }
+
+    public function test_it_can_take_classes_as_attribute()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet class='h-16'></x-maps-leaflet>");
+        $this->assertStringContainsString("class='h-16'", $content);
+    }
 }
