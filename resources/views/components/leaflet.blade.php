@@ -4,11 +4,18 @@
 
 <style>
     #{{$mapId}} {
+    @if(! isset($attributes['style']))
         height: 100vh;
+    @else
+        {{ $attributes['style'] }}
+    @endif
     }
 </style>
 
-<div id="{{$mapId}}"></div>
+<div id="{{$mapId}}" @if(isset($attributes['class']))
+ class='{{ $attributes["class"] }}'
+@endif
+></div>
 
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"

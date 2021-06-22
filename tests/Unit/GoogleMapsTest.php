@@ -29,4 +29,22 @@ final class GoogleMapsTest extends TestCase
 
         $this->assertStringContainsString('zoom: 6', $content);
     }
+
+    public function test_it_has_default_styles()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google></x-maps-google>");
+        $this->assertStringContainsString('height: 100vh', $content);
+    }
+
+    public function test_it_has_can_take_styles_as_attribute()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google style='height: 50vh'></x-maps-google>");
+        $this->assertStringContainsString('height: 50vh', $content);
+    }
+
+    public function test_it_can_take_classes_as_attribute()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google class='h-16'></x-maps-google>");
+        $this->assertStringContainsString("class='h-16'", $content);
+    }
 }
