@@ -32,6 +32,8 @@
         let url = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={{config('maps.mapbox.access_token', null)}}';
     @elseif($tileHost === 'openstreetmap')
         let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    @else
+        let url = '{{$tileHost}}';
     @endif
     L.tileLayer(url, {
         maxZoom: {{$maxZoomLevel}},
