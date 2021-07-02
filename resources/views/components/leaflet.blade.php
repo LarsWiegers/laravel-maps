@@ -25,7 +25,13 @@
 
     var mymap = L.map('{{$mapId}}').setView([{{implode(", ", $centerPoint)}}], {{$zoomLevel}});
     @foreach($markers as $marker)
-        var marker = L.marker([{{implode(",", $marker)}}]).addTo(mymap);
+     @if(isset($marker['icon']))
+       var icon = L.icon({
+        iconUrl: '{{ $marker['icon'] }}',
+        iconSize: [{{$marker['iconSizeX'] ?? 32}} , {{ $marker['iconSizeY'] ?? 32 }}],
+       });
+     @endif
+    var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}},], {{ isset($marker['icon']) ? '{icon: icon}' : '' }}).addTo(mymap);
     @endforeach
 
     @if($tileHost === 'mapbox')
