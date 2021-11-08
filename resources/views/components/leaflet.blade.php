@@ -23,7 +23,7 @@
         crossorigin=""></script>
 <script>
 
-    var mymap = L.map('{{$mapId}}').setView([{{implode(", ", $centerPoint)}}], {{$zoomLevel}});
+    var mymap = L.map('{{$mapId}}').setView([{{$centerPoint['lat'] ?? $centerPoint[0]}}, {{$centerPoint['long'] ?? $centerPoint[1]}}], {{$zoomLevel}});
     @foreach($markers as $marker)
      @if(isset($marker['icon']))
        var icon = L.icon({
@@ -31,7 +31,7 @@
         iconSize: [{{$marker['iconSizeX'] ?? 32}} , {{ $marker['iconSizeY'] ?? 32 }}],
        });
      @endif
-    var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}},], {{ isset($marker['icon']) ? '{icon: icon}' : '' }}).addTo(mymap);
+    var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}}]).addTo(mymap);
     @endforeach
 
     @if($tileHost === 'mapbox')
