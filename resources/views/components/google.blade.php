@@ -38,7 +38,7 @@ class='{{ $attributes["class"] }}'
                     lng: {{$marker['long'] ?? $marker[1]}}
                 },
                 map: map{{$mapId}},
-                title: {{ $marker['title'] ?? "Hello!" }},
+                title: "{{ $marker['title'] ?? 'Welcome' }}",
             });
         @endforeach
     }
