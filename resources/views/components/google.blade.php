@@ -37,7 +37,7 @@ class='{{ $attributes["class"] }}'
                     lat: {{$marker['lat'] ?? $marker[0]}},
                     lng: {{$marker['long'] ?? $marker[1]}}
                 },
-                map{{$mapId}},
+                map: map{{$mapId}},
                 title: "Hello World!",
             });
         @endforeach
