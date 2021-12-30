@@ -19,20 +19,20 @@ composer require larswiegers/laravel-maps
 ## Supported map types
 | What          | Basic map     | Centerpoint  | Basic markers  | Zoomlevel  | Can use different tiles  |
 | ------------- |:-------------:|:------------:|:--------------:|:----------:|:------------------------:|
-| Leaflet       | ✅            | ✅            | ✅             | ✅         | ✅                        |  
-| Google maps   | ✅            | ✅            | ✅             | ✅         | ✅                        |  
+| Leaflet       | ✅            | ✅            | ✅             | ✅         | ✅                        |
+| Google maps   | ✅            | ✅            | ✅             | ✅         | ✅                        |
 
 #### Tilehosts
 ##### Openstreetmap
-Openstreetmap is a creative commence tile library created by volunteers. 
+Openstreetmap is a creative commence tile library created by volunteers.
 No configuration has to be set to use as it is the default tilehost for this library.
 More information can be found here: [openstreetmap.org](https://www.openstreetmap.org)
 
 ##### Mapbox
-Mapbox is a for profit company that also offers free keys. 
-Their map can be more accurate / precise. 
+Mapbox is a for profit company that also offers free keys.
+Their map can be more accurate / precise.
 To get your free key go to [mapbox.com](https://account.mapbox.com/auth/signup/)
-Once logged in you can get your free key and use it by placing it in the env file like this ``MAPS_MAPBOX_ACCESS_TOKEN``. 
+Once logged in you can get your free key and use it by placing it in the env file like this ``MAPS_MAPBOX_ACCESS_TOKEN``.
 ## Usage
 ### Leaflet
 
@@ -63,11 +63,14 @@ Once logged in you can get your free key and use it by placing it in the env fil
 
 // Set markers on the map:
 <x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-google>
+
+// You can customize the title for each markers:
+<x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091, 'title' => 'Your Title']]"></x-maps-google>
 ```
 #### Google maps api key
 You can get an api key here:
 ![console.cloud.google.com](https://console.cloud.google.com/project/_/apiui/credential)
-Create an api key and enable the Maps Javascript API in the console aswell. 
+Create an api key and enable the Maps Javascript API in the console aswell.
 Place the api key in the env file like this ``MAPS_GOOGLE_MAPS_ACCESS_TOKEN``
 ### Testing
 To run the tests just use the following component:
@@ -95,4 +98,3 @@ If you discover any security related issues, please email larswiegers@live.nl in
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
