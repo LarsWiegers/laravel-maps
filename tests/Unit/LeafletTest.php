@@ -46,4 +46,10 @@ final class LeafletTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-leaflet class='h-16'></x-maps-leaflet>");
         $this->assertStringContainsString("class='h-16'", $content);
     }
+
+    public function test_it_can_take_custom_infowindow_on_marker()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'info' => 'MarkerInfo']]\"></x-maps-leaflet>");
+        $this->assertStringContainsString('marker.bindPopup("MarkerInfo");', $content);
+    }
 }

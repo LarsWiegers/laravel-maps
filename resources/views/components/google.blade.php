@@ -31,15 +31,34 @@ class='{{ $attributes["class"] }}'
             zoom: {{$zoomLevel}},
         });
 
+    function addInfoWindow(marker, message) {
+
+        var infoWindow = new google.maps.InfoWindow({
+            content: message
+        });
+
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.open(map{{$mapId}}, marker);
+        });
+    }
+
         @foreach($markers as $marker)
-            new google.maps.Marker({
+            var marker{{ $loop->iteration }} = new google.maps.Marker({
                 position: {
                     lat: {{$marker['lat'] ?? $marker[0]}},
                     lng: {{$marker['long'] ?? $marker[1]}}
                 },
                 map: map{{$mapId}},
-                title: "{{ $marker['title'] ?? 'Hello World!' }}",
+                @if(isset($marker['title']))
+                title: "{{ $marker['title'] }}",
+                @endif
+                icon: @if(isset($marker['icon']))"{{ $marker['icon']}}" @else null @endif
             });
+
+            @if(isset($marker['info']))
+                addInfoWindow(marker{{ $loop->iteration }}, @json($marker['info']));
+            @endif
+
         @endforeach
     }
 </script>

@@ -47,4 +47,16 @@ final class GoogleMapsTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-google class='h-16'></x-maps-google>");
         $this->assertStringContainsString("class='h-16'", $content);
     }
+
+    public function test_it_can_take_custom_icon_on_marker()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'icon' => 'icon.png']]\"></x-maps-google>");
+        $this->assertStringContainsString('icon: "icon.png"', $content);
+    }
+
+    public function test_it_can_take_custom_infowindow_on_marker()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'info' => 'MarkerInfo']]\"></x-maps-google>");
+        $this->assertStringContainsString('addInfoWindow(marker1, "MarkerInfo");', $content);
+    }
 }
