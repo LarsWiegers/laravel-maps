@@ -28,7 +28,7 @@ class LaravelMapsServiceProvider extends ServiceProvider
 
             // Publishing the views.
             $this->publishes([
-                __DIR__.'/../resources/views/components' => resource_path('views/vendor/maps'),
+                __DIR__.'/../resources/views/components' => resource_path('views/vendor/maps/components'),
             ], 'views');
 
             // Publishing assets.
