@@ -17,10 +17,10 @@ composer require larswiegers/laravel-maps
 ```
 
 ## Supported map types
-| What          | Basic map     | Centerpoint  | Basic markers  | Zoomlevel  | Can use different tiles  |
-| ------------- |:-------------:|:------------:|:--------------:|:----------:|:------------------------:|
-| Leaflet       | ✅            | ✅            | ✅             | ✅         | ✅                        |
-| Google maps   | ✅            | ✅            | ✅             | ✅         | ✅                        |
+| What          | Basic map     | Centerpoint  | Basic markers  | Zoomlevel  | Can use different tiles  | Can be used multiple times on the same page |
+| ------------- |:-------------:|:------------:|:--------------:|:----------:|:------------------------:|:--------------------------------------------|
+| Leaflet       | ✅            | ✅            | ✅             | ✅         | ✅                        | ✅                                           |
+| Google maps   | ✅            | ✅            | ✅             | ✅         | ✅                        | ❌                                           |
 
 #### Tilehosts
 ##### Openstreetmap
