@@ -39,13 +39,13 @@
     @endforeach
 
     @if($tileHost === 'mapbox')
-        let url = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={{config('maps.mapbox.access_token', null)}}';
+        let url{{$mapId}} = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={{config('maps.mapbox.access_token', null)}}';
     @elseif($tileHost === 'openstreetmap')
-        let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        let url{{$mapId}} = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     @else
-        let url = '{{$tileHost}}';
+        let url{{$mapId}} = '{{$tileHost}}';
     @endif
-    L.tileLayer(url, {
+    L.tileLayer(url{{$mapId}}, {
         maxZoom: {{$maxZoomLevel}},
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
             'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
