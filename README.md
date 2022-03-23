@@ -16,6 +16,12 @@ You can install the package via composer:
 composer require larswiegers/laravel-maps
 ```
 
+If you want to customize the map views more then you can publish the views:
+
+```bash
+php artisan vendor:publish --provider="Larswiegers\LaravelMaps\LaravelMapsServiceProvider"
+```
+
 ## Supported map types
 | What          | Basic map     | Centerpoint  | Basic markers  | Zoomlevel  | Can use different tiles  | Can be used multiple times on the same page |
 | ------------- |:-------------:|:------------:|:--------------:|:----------:|:------------------------:|:--------------------------------------------|
