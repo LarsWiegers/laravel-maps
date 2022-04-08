@@ -32,10 +32,10 @@
        });
      @endif
     var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}}]);
-    @if(isset($marker['info']))
-     marker.bindPopup(@json($marker['info']));
-    @endif
     marker.addTo(mymap);
+    @if(isset($marker['info']))
+    marker.bindPopup(@json($marker['info']));
+    @endif
     @endforeach
 
     @if($tileHost === 'mapbox')
