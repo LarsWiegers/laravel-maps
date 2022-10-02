@@ -86,6 +86,9 @@ To run the tests just use the following component:
 composer test
 ```
 
+Testing is done through rendering the blade components and making assertions on the html outputted. 
+While this is great for initial testing it does lack some more certainty. In the future an browser test may be needed to further make sure that the code works as intended. 
+
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
