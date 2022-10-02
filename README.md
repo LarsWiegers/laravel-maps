@@ -80,6 +80,12 @@ You can get an api key here:
 ![console.cloud.google.com](https://console.cloud.google.com/project/_/apiui/credential)
 Create an api key and enable the Maps Javascript API in the console aswell.
 Place the api key in the env file like this ``MAPS_GOOGLE_MAPS_ACCESS_TOKEN``
+
+### Usage in livewire
+This library does not support livewire out of the box, but some users have found a workaround to work. 
+Please see this issue for more information: https://github.com/LarsWiegers/laravel-maps/issues/34
+
+Feel free to PR a livewire component if you have the time.
 ### Testing
 To run the tests just use the following component:
 ```bash
