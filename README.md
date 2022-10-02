@@ -39,6 +39,15 @@ Mapbox is a for profit company that also offers free keys.
 Their map can be more accurate / precise.
 To get your free key go to [mapbox.com](https://account.mapbox.com/auth/signup/)
 Once logged in you can get your free key and use it by placing it in the env file like this ``MAPS_MAPBOX_ACCESS_TOKEN``.
+
+##### Attribution
+Mapbox requires you to have attribution when you use their tilehost. More information on that here: https://docs.mapbox.com/help/getting-started/attribution/ 
+We provide a default value if you use mapbox. But if you want to customize it you can pass in the te text via the attribution attribute. Like this:
+```
+<x-maps-leaflet 
+    :attribution="Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>">
+</x-maps-leaflet>
+```
 ## Usage
 ### Leaflet
 

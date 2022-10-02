@@ -23,7 +23,17 @@ class Leaflet extends Component
 
     public $mapId;
 
-    public function __construct($centerPoint = [0,0], $markers = [], $zoomLevel = 13, $maxZoomLevel = 18, $tileHost = 'openstreetmap', $id = self::DEFAULTMAPID )
+    public string $attribution;
+
+    public function __construct(
+        $centerPoint = [0,0],
+        $markers = [],
+        $zoomLevel = 13,
+        $maxZoomLevel = 18,
+        $tileHost = 'openstreetmap',
+        $id = self::DEFAULTMAPID,
+        $attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors, Imagery © Mapbox.com'
+    )
     {
         $this->centerPoint = $centerPoint;
         $this->zoomLevel = $zoomLevel;
@@ -31,6 +41,7 @@ class Leaflet extends Component
         $this->markers = $markers;
         $this->tileHost = $tileHost;
         $this->mapId = $id;
+        $this->attribution = $attribution;
     }
 
     public function render() : View
@@ -48,7 +59,8 @@ class Leaflet extends Component
             'markers' => $this->markers,
             'markerArray' => $markerArray,
             'tileHost' => $this->tileHost,
-            'mapId' => $this->mapId === self::DEFAULTMAPID ? Str::random() : $this->mapId
+            'mapId' => $this->mapId === self::DEFAULTMAPID ? Str::random() : $this->mapId,
+            'attribution' => $this->attribution,
         ]);
     }
 }

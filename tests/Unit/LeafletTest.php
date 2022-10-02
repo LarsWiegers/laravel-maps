@@ -52,4 +52,16 @@ final class LeafletTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-leaflet :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'info' => 'MarkerInfo']]\"></x-maps-leaflet>");
         $this->assertStringContainsString('marker.bindPopup("MarkerInfo");', $content);
     }
+
+    public function test_it_shows_the_attribution()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet attribution='test'></x-maps-leaflet>");
+        $this->assertStringContainsString('test', $content);
+    }
+
+    public function test_it_shows_the_default_attribution()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet></x-maps-leaflet>");
+        $this->assertStringContainsString('Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors, Imagery © Mapbox.com', $content);
+    }
 }
