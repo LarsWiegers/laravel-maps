@@ -13,14 +13,14 @@ jobs:
             fail-fast: true
             matrix:
                 os: [ubuntu-latest]
-                php: [7.4, 8.0]
-                laravel: [8.*, 9.*]
+                php: [7.4, 8.0, 8.1, 8.2]
+                laravel: [^8.79, 9.*]
                 stability: [prefer-lowest, prefer-stable]
                 exclude:
                     - laravel: 9.*
                       php: 7.4
                 include:
-                    - laravel: 8.*
+                    - laravel: ^8.79
                       testbench: ^6.6
                     - laravel: 9.*
                       testbench: ^7.0
@@ -29,7 +29,7 @@ jobs:
 
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
@@ -42,9 +42,11 @@ jobs:
               run: |
                   echo "::add-matcher::${{ runner.tool_cache }}/php.json"
                   echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
             - name: Install dependencies
               run: |
-                  composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+                  composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:^2.63" "ramsey/collection:^1.2.2" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
                   composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
             - name: Execute tests
               run: vendor/bin/phpunit
