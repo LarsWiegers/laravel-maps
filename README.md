@@ -90,6 +90,9 @@ You can get an api key here:
 Create an api key and enable the Maps Javascript API in the console aswell.
 Place the api key in the env file like this ``MAPS_GOOGLE_MAPS_ACCESS_TOKEN``
 
+### Good to know
+Double quotes need to be escaped, i.e. add a backslash followed by double quotes (/")
+
 ### Usage in livewire
 This library does not support livewire out of the box, but some users have found a workaround to work. 
 Please see this issue for more information: https://github.com/LarsWiegers/laravel-maps/issues/34
