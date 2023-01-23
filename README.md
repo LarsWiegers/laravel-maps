@@ -65,6 +65,8 @@ We provide a default value if you use mapbox. But if you want to customize it yo
 
 // Set markers on the map:
 <x-maps-leaflet :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-leaflet>
+
+// note: Double quotes need to be escaped, i.e. add a backslash followed by double quotes (/")
 ```
 Do note that if you want to use multiple maps on the same page that you need to specify an id per map.
 
