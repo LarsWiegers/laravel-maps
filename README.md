@@ -68,6 +68,8 @@ We provide a default value if you use mapbox. But if you want to customize it yo
 ```
 Do note that if you want to use multiple maps on the same page that you need to specify an id per map.
 
+Good to know: Double quotes need to be escaped, i.e. add a backslash followed by double quotes (/")
+
 ### Google maps
 ``` blade
 // Google maps
