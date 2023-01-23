@@ -68,8 +68,6 @@ We provide a default value if you use mapbox. But if you want to customize it yo
 ```
 Do note that if you want to use multiple maps on the same page that you need to specify an id per map.
 
-Good to know: Double quotes need to be escaped, i.e. add a backslash followed by double quotes (/")
-
 ### Google maps
 ``` blade
 // Google maps
@@ -91,6 +89,9 @@ You can get an api key here:
 ![console.cloud.google.com](https://console.cloud.google.com/project/_/apiui/credential)
 Create an api key and enable the Maps Javascript API in the console aswell.
 Place the api key in the env file like this ``MAPS_GOOGLE_MAPS_ACCESS_TOKEN``
+
+### Good to know
+Double quotes need to be escaped, i.e. add a backslash followed by double quotes (/")
 
 ### Usage in livewire
 This library does not support livewire out of the box, but some users have found a workaround to work. 
