@@ -23,7 +23,7 @@ jobs:
                     - laravel: 9.*
                       php: 7.4
                 include:
-                    - laravel: 10.0
+                    - laravel: 10.*
                       testbench: ^8.0
                     - laravel: ^8.79
                       testbench: ^6.6
