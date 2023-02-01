@@ -8,11 +8,10 @@ on:
 
 jobs:
     test:
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
         strategy:
             fail-fast: true
             matrix:
-                os: [ubuntu-latest]
                 php: [7.4, 8.0, 8.1, 8.2]
                 laravel: [^8.79, 9.*, 10.*]
                 stability: [prefer-lowest, prefer-stable]
@@ -31,7 +30,7 @@ jobs:
                     - laravel: 9.*
                       testbench: ^7.0
 
-        name: PHP${{ matrix.php }} - LARAVEL${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+        name: PHP${{ matrix.php }} - LARAVEL${{ matrix.laravel }} - ${{ matrix.stability }} - ubuntu-latest
 
         steps:
             - name: Checkout code
