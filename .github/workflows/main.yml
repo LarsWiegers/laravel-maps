@@ -12,18 +12,20 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                os: [ubuntu-latest]
-                php: [7.4, 8.0, 8.1, 8.2]
-                laravel: [^8.79, 9.*]
-                stability: [prefer-lowest, prefer-stable]
-                exclude:
-                    - laravel: 9.*
-                      php: 7.4
-                include:
-                    - laravel: ^8.79
-                      testbench: ^6.6
-                    - laravel: 9.*
-                      testbench: ^7.0
+              os: [ubuntu-latest]
+              php: [8.1, 8.2]
+              laravel: [9.*, 10.*]
+              stability: [prefer-stable]
+              include:
+                - laravel: 9.*
+                  testbench: ^7.0
+                - laravel: 10.*
+                  testbench: ^8.0
+              exclude:
+                - laravel: 10.*
+                  php: 8.0
+                - laravel: 9.*
+                  php: 7.4
 
         name: PHP${{ matrix.php }} - LARAVEL${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
