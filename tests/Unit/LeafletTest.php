@@ -64,4 +64,16 @@ final class LeafletTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-leaflet></x-maps-leaflet>");
         $this->assertStringContainsString('Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors, Imagery © Mapbox.com', $content);
     }
+
+    public function test_uses_latest_as_default_version()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet></x-maps-leaflet>");
+        $this->assertStringContainsString('https://unpkg.com/leaflet@latest/dist/leaflet.js', $content);
+    }
+
+    public function test_can_pass_in_version_and_it_uses_that()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-leaflet leafletVersion='1.9.4'></x-maps-leaflet>");
+        $this->assertStringContainsString('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', $content);
+    }
 }
