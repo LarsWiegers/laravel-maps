@@ -68,6 +68,12 @@ We provide a default value if you use mapbox. But if you want to customize it yo
 ```
 Do note that if you want to use multiple maps on the same page that you need to specify an id per map.
 
+#### Leaflet Version
+By default we use the latest version of leaflet, but if you want to use a different version just pass it in via a parameter:
+```blade
+// Set leafletVersion to desired version:
+<x-maps-leaflet leafletVersion='1.9.4'></x-maps-leaflet>
+```
 ### Google maps
 ``` blade
 // Google maps
