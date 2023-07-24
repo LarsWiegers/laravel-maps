@@ -30,7 +30,11 @@
         iconSize: [{{$marker['iconSizeX'] ?? 32}} , {{ $marker['iconSizeY'] ?? 32 }}],
        });
      @endif
-    var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}}]);
+    var marker = L.marker([{{$marker['lat'] ?? $marker[0]}}, {{$marker['long'] ?? $marker[1]}}]
+    @if(isset($marker['icon']))
+     , {icon: icon}
+    @endif
+    );
     marker.addTo(mymap);
     @if(isset($marker['info']))
     marker.bindPopup(@json($marker['info']));
