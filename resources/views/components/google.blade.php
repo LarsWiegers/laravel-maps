@@ -23,7 +23,7 @@ class='{{ $attributes["class"] }}'
 ></script>
 
 <script>
-    let map{{$mapId}} = "";
+    let map{{$mapId}} = "";  
 
     function initMap{{$mapId}}() {
         map{{$mapId}} = new google.maps.Map(document.getElementById("{{$mapId}}"), {
@@ -42,23 +42,38 @@ class='{{ $attributes["class"] }}'
         });
     }
 
-        @foreach($markers as $marker)
-            var marker{{ $loop->iteration }} = new google.maps.Marker({
-                position: {
-                    lat: {{$marker['lat'] ?? $marker[0]}},
-                    lng: {{$marker['long'] ?? $marker[1]}}
-                },
-                map: map{{$mapId}},
-                @if(isset($marker['title']))
-                title: "{{ $marker['title'] }}",
-                @endif
-                icon: @if(isset($marker['icon']))"{{ $marker['icon']}}" @else null @endif
-            });
+    @if($fitToBounds || $centerToBoundsCenter)
+    let bounds = new google.maps.LatLngBounds();
+    @endif
 
-            @if(isset($marker['info']))
-                addInfoWindow(marker{{ $loop->iteration }}, @json($marker['info']));
+    @foreach($markers as $marker)
+        var marker{{ $loop->iteration }} = new google.maps.Marker({
+            position: {
+                lat: {{$marker['lat'] ?? $marker[0]}},
+                lng: {{$marker['long'] ?? $marker[1]}}
+            },
+            map: map{{$mapId}},
+            @if(isset($marker['title']))
+            title: "{{ $marker['title'] }}",
             @endif
+            icon: @if(isset($marker['icon']))"{{ $marker['icon']}}" @else null @endif
+        });
 
+        @if(isset($marker['info']))
+            addInfoWindow(marker{{ $loop->iteration }}, @json($marker['info']));
+        @endif
+
+        @if($fitToBounds || $centerToBoundsCenter)
+        bounds.extend({lat: {{$marker['lat'] ?? $marker[0]}},lng: {{$marker['long'] ?? $marker[1]}}});
+        @endif
+
+        @if($fitToBounds)
+        map{{$mapId}}.fitBounds(bounds);
+        @endif        
         @endforeach
+
+        @if($centerToBoundsCenter)
+        map{{$mapId}}.setCenter(bounds.getCenter());
+        @endif
     }
 </script>
