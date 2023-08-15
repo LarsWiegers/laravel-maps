@@ -23,10 +23,10 @@ php artisan vendor:publish --provider="Larswiegers\LaravelMaps\LaravelMapsServic
 ```
 
 ## Supported map types
-| What          | Basic map     | Centerpoint  | Basic markers  | Zoomlevel  | Can use different tiles  | Can be used multiple times on the same page |
-| ------------- |:-------------:|:------------:|:--------------:|:----------:|:------------------------:|:--------------------------------------------|
-| Leaflet       | ✅            | ✅            | ✅             | ✅         | ✅                        | ✅                                           |
-| Google maps   | ✅            | ✅            | ✅             | ✅         | ✅                        | ❌                                           |
+| What        | Basic map | Centerpoint | Basic markers | Zoomlevel | Can use different tiles | Can be used multiple times on the same page |
+| ----------- | :-------: | :---------: | :-----------: | :-------: | :---------------------: | :------------------------------------------ |
+| Leaflet     |     ✅     |      ✅      |       ✅       |     ✅     |            ✅            | ✅                                           |
+| Google maps |     ✅     |      ✅      |       ✅       |     ✅     |            ✅            | ❌                                           |
 
 #### Tilehosts
 ##### Openstreetmap
@@ -89,6 +89,25 @@ By default we use the latest version of leaflet, but if you want to use a differ
 
 // You can customize the title for each markers:
 <x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091, 'title' => 'Your Title']]"></x-maps-google>
+
+// Automatically adjust the map's view during initialization to encompass all markers:
+<x-maps-google
+    :markers="[
+        ['lat' => 46.056946, 'long' => 14.505752],
+        ['lat' => 41.902782, 'long' => 12.496365]
+    ]"            
+    :fitToBounds="true"
+></x-maps-google>
+
+// Position the map's center at the geometric midpoint of all markers:
+<x-maps-google
+    :markers="[
+        ['lat' => 46.056946, 'long' => 14.505752],
+        ['lat' => 41.902782, 'long' => 12.496365]
+    ]"            
+    :centerToBoundsCenter="true"
+    :zoomLevel="7"
+></x-maps-google>
 ```
 #### Google maps api key
 You can get an api key here:
