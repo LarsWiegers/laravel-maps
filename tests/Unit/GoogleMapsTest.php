@@ -73,4 +73,16 @@ final class GoogleMapsTest extends TestCase
         $this->assertStringContainsString('let bounds = new google.maps.LatLngBounds();', $content);
         $this->assertStringContainsString('.setCenter(bounds.getCenter())', $content);
     }
+
+    public function test_we_can_set_map_type()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :mapType=\"'hybrid'\"></x-maps-google>");
+        $this->assertStringContainsString("mapTypeId: 'hybrid'", $content);
+    }
+
+    public function test_that_invalid_map_type_fallbacks_to_default_map_type()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :mapType=\"'invalidtype'\"></x-maps-google>");
+        $this->assertStringContainsString("mapTypeId: 'roadmap'", $content);
+    }
 }
