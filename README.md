@@ -23,10 +23,10 @@ php artisan vendor:publish --provider="Larswiegers\LaravelMaps\LaravelMapsServic
 ```
 
 ## Supported map types
-| What        | Basic map | Centerpoint | Basic markers | Zoomlevel | Can use different tiles | Can be used multiple times on the same page |
-| ----------- | :-------: | :---------: | :-----------: | :-------: | :---------------------: | :------------------------------------------ |
-| Leaflet     |     ✅     |      ✅      |       ✅       |     ✅     |            ✅            | ✅                                           |
-| Google maps |     ✅     |      ✅      |       ✅       |     ✅     |            ✅            | ❌                                           |
+| What        | Basic map | Different map types | Centerpoint | Basic markers | Use bounds | Zoomlevel | Can use different tiles | Can be used multiple times on the same page |
+| ----------- | :-------: | :-----------------: | :---------: | :-----------: | :--------: | :-------: | :---------------------: | :------------------------------------------ |
+| Leaflet     |     ✅     |          ❌          |      ✅      |       ✅       |     ❌      |     ✅     |            ✅            | ✅                                           |
+| Google maps |     ✅     |          ✅          |      ✅      |       ✅       |     ✅      |     ✅     |            ✅            | ❌                                           |
 
 #### Tilehosts
 ##### Openstreetmap
@@ -57,10 +57,10 @@ We provide a default value if you use mapbox. But if you want to customize it yo
 
 <x-maps-leaflet></x-maps-leaflet>
 
-// set the centerpoint of the map:
+// Set the centerpoint of the map:
 <x-maps-leaflet :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-leaflet>
 
-// set a zoomlevel:
+// Set a zoomlevel:
 <x-maps-leaflet :zoomLevel="6"></x-maps-leaflet>
 
 // Set markers on the map:
@@ -74,15 +74,18 @@ By default we use the latest version of leaflet, but if you want to use a differ
 // Set leafletVersion to desired version:
 <x-maps-leaflet leafletVersion='1.9.4'></x-maps-leaflet>
 ```
-### Google maps
+### Google Maps
 ``` blade
-// Google maps
+// Google Maps
 
-// set the centerpoint of the map:
+// Set the centerpoint of the map:
 <x-maps-google :centerPoint="['lat' => 52.16, 'long' => 5]"></x-maps-google>
 
-// set a zoomlevel:
+// Set a zoomlevel:
 <x-maps-google :zoomLevel="6"></x-maps-google>
+
+// Set type of the map (roadmap, satellite, hybrid, terrain):
+<x-maps-google :mapType="'hybrid'"></x-maps-google>
 
 // Set markers on the map:
 <x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091]]"></x-maps-google>
