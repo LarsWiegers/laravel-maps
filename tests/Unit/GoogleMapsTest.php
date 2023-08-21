@@ -59,4 +59,30 @@ final class GoogleMapsTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'info' => 'MarkerInfo']]\"></x-maps-google>");
         $this->assertStringContainsString('addInfoWindow(marker1, "MarkerInfo");', $content);
     }
+
+    public function test_we_can_set_fit_to_bounds()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684]]\" :fitToBounds=\"true\"></x-maps-google>");
+        $this->assertStringContainsString('let bounds = new google.maps.LatLngBounds();', $content);
+        $this->assertStringContainsString('.fitBounds(bounds)', $content);
+    }
+
+    public function test_we_can_set_center_to_bounds_center()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684]]\" :centerToBoundsCenter=\"true\"></x-maps-google>");
+        $this->assertStringContainsString('let bounds = new google.maps.LatLngBounds();', $content);
+        $this->assertStringContainsString('.setCenter(bounds.getCenter())', $content);
+    }
+
+    public function test_we_can_set_map_type()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :mapType=\"'hybrid'\"></x-maps-google>");
+        $this->assertStringContainsString("mapTypeId: 'hybrid'", $content);
+    }
+
+    public function test_that_invalid_map_type_fallbacks_to_default_map_type()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :mapType=\"'invalidtype'\"></x-maps-google>");
+        $this->assertStringContainsString("mapTypeId: 'roadmap'", $content);
+    }
 }
