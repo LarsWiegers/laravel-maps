@@ -17,7 +17,7 @@ trait InteractsWithViews
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
      * @return \Tests\TestView
      */
-    protected function view(string $view, array $data = [])
+    protected function view(string $view, array $data = []): TestView
     {
         return new TestView(view($view, $data));
     }
