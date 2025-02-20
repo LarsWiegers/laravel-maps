@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use Tests\InteractsWithViews;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Tests\TestCase;
 
 final class LeafletTest extends TestCase
