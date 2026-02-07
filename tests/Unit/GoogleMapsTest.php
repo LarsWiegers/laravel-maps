@@ -51,7 +51,24 @@ final class GoogleMapsTest extends TestCase
     public function test_it_can_take_custom_icon_on_marker()
     {
         $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'icon' => 'icon.png']]\"></x-maps-google>");
-        $this->assertStringContainsString('icon: "icon.png"', $content);
+        $this->assertStringContainsString('markerImage', $content);
+        $this->assertStringContainsString('.src = "icon.png"', $content);
+    }
+
+    public function test_it_can_take_custom_label_on_marker()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'label' => 'Store Location']]\"></x-maps-google>");
+        $this->assertStringContainsString('markerLabel', $content);
+        $this->assertStringContainsString('.textContent = &quot;Store Location&quot;', $content);
+    }
+
+    public function test_it_can_take_both_icon_and_label_on_marker()
+    {
+        $content = $this->getComponentRenderedContent("<x-maps-google :markers=\"[['lat' => 38.716450, 'long' => 0.055684, 'icon' => 'icon.png', 'label' => 'Store']]\"></x-maps-google>");
+        $this->assertStringContainsString('markerImage', $content);
+        $this->assertStringContainsString('markerLabel', $content);
+        $this->assertStringContainsString('.src = "icon.png"', $content);
+        $this->assertStringContainsString('.textContent = &quot;Store&quot;', $content);
     }
 
     public function test_it_can_take_custom_infowindow_on_marker()
