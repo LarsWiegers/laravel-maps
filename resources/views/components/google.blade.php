@@ -18,7 +18,7 @@ class='{{ $attributes["class"] }}'
         @endif
 ></div>
 <script
-        src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap{{$mapId}}&libraries=&v=3"
+        src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap{{$mapId}}&libraries=marker&v=weekly"
         async
 ></script>
 
@@ -29,7 +29,8 @@ class='{{ $attributes["class"] }}'
         map{{$mapId}} = new google.maps.Map(document.getElementById("{{$mapId}}"), {
             center: { lat: {{$centerPoint['lat'] ?? $centerPoint[0]}}, lng: {{$centerPoint['long'] ?? $centerPoint[1]}} },
             zoom: {{$zoomLevel}},
-            mapTypeId: '{{$mapType}}'
+            mapTypeId: '{{$mapType}}',
+            mapId: '{{$mapId}}'
         });
 
     function addInfoWindow(marker, message) {
@@ -38,8 +39,11 @@ class='{{ $attributes["class"] }}'
             content: message
         });
 
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.open(map{{$mapId}}, marker);
+        marker.addEventListener('gmp-click', function () {
+            infoWindow.open({
+                anchor: marker,
+                map: map{{$mapId}}
+            });
         });
     }
 
@@ -48,33 +52,65 @@ class='{{ $attributes["class"] }}'
     @endif
 
     @foreach($markers as $marker)
-        var marker{{ $loop->iteration }} = new google.maps.Marker({
+        // Create marker content
+        @if(isset($marker['icon']) || isset($marker['label']))
+            var markerContent{{ $loop->iteration }} = document.createElement('div');
+            markerContent{{ $loop->iteration }}.style.display = 'flex';
+            markerContent{{ $loop->iteration }}.style.alignItems = 'center';
+            markerContent{{ $loop->iteration }}.style.gap = '8px';
+
+            @if(isset($marker['icon']))
+                var markerImage{{ $loop->iteration }} = document.createElement('img');
+                markerImage{{ $loop->iteration }}.src = "{{ $marker['icon'] }}";
+                markerImage{{ $loop->iteration }}.style.width = '32px';
+                markerImage{{ $loop->iteration }}.style.height = '32px';
+                markerContent{{ $loop->iteration }}.appendChild(markerImage{{ $loop->iteration }});
+            @endif
+
+            @if(isset($marker['label']))
+                var markerLabel{{ $loop->iteration }} = document.createElement('div');
+                markerLabel{{ $loop->iteration }}.textContent = {{ json_encode($marker['label']) }};
+                markerLabel{{ $loop->iteration }}.style.background = 'white';
+                markerLabel{{ $loop->iteration }}.style.padding = '4px 8px';
+                markerLabel{{ $loop->iteration }}.style.borderRadius = '4px';
+                markerLabel{{ $loop->iteration }}.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+                markerLabel{{ $loop->iteration }}.style.fontSize = '14px';
+                markerLabel{{ $loop->iteration }}.style.fontWeight = '500';
+                markerLabel{{ $loop->iteration }}.style.whiteSpace = 'nowrap';
+                markerContent{{ $loop->iteration }}.appendChild(markerLabel{{ $loop->iteration }});
+            @endif
+        @endif
+        console.log();
+        var marker{{ $loop->iteration }} = new google.maps.marker.AdvancedMarkerElement({
             position: {
                 lat: {{$marker['lat'] ?? $marker[0]}},
                 lng: {{$marker['long'] ?? $marker[1]}}
             },
             map: map{{$mapId}},
             @if(isset($marker['title']))
-            title: "{{ $marker['title'] }}",
+                title: "{{ $marker['title'] }}",
             @endif
-            icon: @if(isset($marker['icon']))"{{ $marker['icon']}}" @else null @endif
+            @if(isset($marker['icon']) || isset($marker['label']))
+                content: markerContent{{ $loop->iteration }},
+            @endif
+            gmpClickable: true
         });
 
-        @if(isset($marker['info']))
-            addInfoWindow(marker{{ $loop->iteration }}, @json($marker['info']));
-        @endif
+            @if(isset($marker['info']))
+                addInfoWindow(marker{{ $loop->iteration }}, @json($marker['info']));
+            @endif
 
-        @if($fitToBounds || $centerToBoundsCenter)
-        bounds.extend({lat: {{$marker['lat'] ?? $marker[0]}},lng: {{$marker['long'] ?? $marker[1]}}});
-        @endif
+            @if($fitToBounds || $centerToBoundsCenter)
+                bounds.extend({lat: {{$marker['lat'] ?? $marker[0]}},lng: {{$marker['long'] ?? $marker[1]}}});
+            @endif
 
-        @if($fitToBounds)
-        map{{$mapId}}.fitBounds(bounds);
-        @endif        
-        @endforeach
+            @if($fitToBounds)
+                map{{$mapId}}.fitBounds(bounds);
+            @endif
+    @endforeach
 
-        @if($centerToBoundsCenter)
+    @if($centerToBoundsCenter)
         map{{$mapId}}.setCenter(bounds.getCenter());
-        @endif
+    @endif
     }
 </script>

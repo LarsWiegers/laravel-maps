@@ -93,6 +93,18 @@ By default we use the latest version of leaflet, but if you want to use a differ
 // You can customize the title for each markers:
 <x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091, 'title' => 'Your Title']]"></x-maps-google>
 
+// You can add custom icons to markers:
+<x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091, 'icon' => 'path/to/icon.png']]"></x-maps-google>
+
+// You can add text labels next to markers (uses Advanced Markers):
+<x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091, 'label' => 'Store Location']]"></x-maps-google>
+
+// You can combine icons and labels:
+<x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091, 'icon' => 'store.png', 'label' => 'Main Store']]"></x-maps-google>
+
+// You can add info windows that appear when clicking markers:
+<x-maps-google :markers="[['lat' => 52.16444513293423, 'long' => 5.985622388024091, 'info' => 'This is our main office']]"></x-maps-google>
+
 // Automatically adjust the map's view during initialization to encompass all markers:
 <x-maps-google
     :markers="[
@@ -117,6 +129,15 @@ You can get an api key here:
 ![console.cloud.google.com](https://console.cloud.google.com/project/_/apiui/credential)
 Create an api key and enable the Maps Javascript API in the console aswell.
 Place the api key in the env file like this ``MAPS_GOOGLE_MAPS_ACCESS_TOKEN``
+
+#### Advanced Markers
+This package now uses Google Maps' AdvancedMarkerElement (introduced in v3.56) instead of the deprecated google.maps.Marker class. Advanced Markers provide several improvements including:
+- Better performance and rendering
+- Support for custom HTML content including text labels next to markers
+- Improved accessibility
+- Future-proof implementation aligned with Google's latest recommendations
+
+Read more about Advanced Markers: [Google Maps Advanced Markers Documentation](https://developers.google.com/maps/documentation/javascript/advanced-markers/overview)
 
 ### Good to know
 Double quotes need to be escaped, i.e. add a backslash followed by double quotes (/")
