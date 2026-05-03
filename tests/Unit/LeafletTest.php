@@ -76,4 +76,19 @@ final class LeafletTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-leaflet leafletVersion='1.9.4'></x-maps-leaflet>");
         $this->assertStringContainsString('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', $content);
     }
+
+    public function test_it_registers_the_map_in_a_global_registry(): void
+    {
+        $content = $this->getComponentRenderedContent('<x-maps-leaflet id="mapId"></x-maps-leaflet>');
+        $this->assertStringContainsString("window.leafletMaps = window.leafletMaps || {};", $content);
+        $this->assertStringContainsString("window.leafletMaps['mapId'] = mymap;", $content);
+    }
+
+    public function test_it_dispatches_a_map_ready_event(): void
+    {
+        $content = $this->getComponentRenderedContent('<x-maps-leaflet id="mapId"></x-maps-leaflet>');
+        $this->assertStringContainsString("dispatchEvent(new CustomEvent('leaflet-map-ready'", $content);
+        $this->assertStringContainsString("mapId: 'mapId'", $content);
+        $this->assertStringContainsString("map: mymap", $content);
+    }
 }

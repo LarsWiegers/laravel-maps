@@ -55,4 +55,10 @@
         tileSize: 512,
         zoomOffset: -1
     }).addTo(mymap);
+
+    window.leafletMaps = window.leafletMaps || {};
+    window.leafletMaps['{{$mapId}}'] = mymap;
+    window.dispatchEvent(new CustomEvent('leaflet-map-ready', {
+        detail: { mapId: '{{$mapId}}', map: mymap }
+    }));
 </script>
