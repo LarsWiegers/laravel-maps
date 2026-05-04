@@ -91,4 +91,14 @@ final class LeafletTest extends TestCase
         $this->assertStringContainsString("mapId: 'mapId'", $content);
         $this->assertStringContainsString("map: mymap", $content);
     }
+
+    public function test_it_renders_valid_javascript_when_id_contains_hyphens(): void
+    {
+        // Hyphens are valid in HTML ids but not in JS identifiers.
+        // The package must not concatenate the id into a JS variable name.
+        $content = $this->getComponentRenderedContent('<x-maps-leaflet id="my-map"></x-maps-leaflet>');
+        $this->assertStringNotContainsString('urlmy-map', $content);
+        $this->assertStringContainsString('let url =', $content);
+        $this->assertStringContainsString('L.tileLayer(url,', $content);
+    }
 }
