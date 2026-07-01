@@ -76,4 +76,29 @@ final class LeafletTest extends TestCase
         $content = $this->getComponentRenderedContent("<x-maps-leaflet leafletVersion='1.9.4'></x-maps-leaflet>");
         $this->assertStringContainsString('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', $content);
     }
+
+    public function test_it_registers_the_map_in_a_global_registry(): void
+    {
+        $content = $this->getComponentRenderedContent('<x-maps-leaflet id="mapId"></x-maps-leaflet>');
+        $this->assertStringContainsString("window.leafletMaps = window.leafletMaps || {};", $content);
+        $this->assertStringContainsString("window.leafletMaps['mapId'] = mymap;", $content);
+    }
+
+    public function test_it_dispatches_a_map_ready_event(): void
+    {
+        $content = $this->getComponentRenderedContent('<x-maps-leaflet id="mapId"></x-maps-leaflet>');
+        $this->assertStringContainsString("dispatchEvent(new CustomEvent('leaflet-map-ready'", $content);
+        $this->assertStringContainsString("mapId: 'mapId'", $content);
+        $this->assertStringContainsString("map: mymap", $content);
+    }
+
+    public function test_it_renders_valid_javascript_when_id_contains_hyphens(): void
+    {
+        // Hyphens are valid in HTML ids but not in JS identifiers.
+        // The package must not concatenate the id into a JS variable name.
+        $content = $this->getComponentRenderedContent('<x-maps-leaflet id="my-map"></x-maps-leaflet>');
+        $this->assertStringNotContainsString('urlmy-map', $content);
+        $this->assertStringContainsString('let url =', $content);
+        $this->assertStringContainsString('L.tileLayer(url,', $content);
+    }
 }
